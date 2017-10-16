@@ -1,0 +1,35 @@
+{
+ "name": "할배",
+ "children": [
+  {
+   "name": "할배자식",
+   "children": [
+    {
+     "name": "할배자식자식1",
+     "children": [
+      {"name": "1", "size": 3938},
+      {"name": "2", "size": 3812},
+      {"name": "3", "size": 6714},
+      {"name": "4", "size": 6123}
+     ]
+    },
+    {
+     "name": "할배자식자식2",
+     "children": [
+      {"name": "1", "size": 3534},
+      {"name": "2", "size": 5731},
+      {"name": "3", "size": 7840},
+      {"name": "4", "size": 5914},
+      {"name": "5", "size": 3416}
+     ]
+    },
+    {
+     "name": "할배자식자식3",
+     "children": [
+      {"name": "1", "size": 7074}
+     ]
+    }
+   ]
+  }
+ ]
+}
