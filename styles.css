@@ -8,6 +8,11 @@ html {
   -webkit-app-region: drag;
 }
 
+body {
+  text-align: center;
+  overflow: hidden;
+}
+
 div {
   color: white
 }

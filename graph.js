@@ -3,9 +3,9 @@ var width = 1280,
     global;
 
 var force = d3.layout.force()
-    .linkDistance(400)
-    .charge(-200)
-    .gravity(.03)
+    .linkDistance(100)
+    .charge(-1000)
+    .gravity(0)
     .size([width, height])
     .on("tick", tick);
 
@@ -27,12 +27,20 @@ function update() {
   var nodes = flatten(global),
       links = d3.layout.tree().links(nodes);
 
+  var root = nodes[nodes.length-1];
+  root.x = width/2;
+  root.y = height/2;
+  root.fixed = true;
+  
   // Restart the force layout.
   force
       .nodes(nodes)
       .links(links)
       .start();
-
+  
+  console.log(root.x);
+  console.log(root.y);
+  
   // Update links.
   link = link.data(links, function(d) { return d.target.id; });
 
@@ -49,10 +57,20 @@ function update() {
   var nodeEnter = node.enter().append("g")
       .attr("class", "node")
       .on("click", click)
-      .call(force.drag);
-
+      //.call(force.drag);
+	  
   nodeEnter.append("circle")
-      .attr("r", function(d) { return Math.sqrt(d.size) / 5 || 65; });
+      .attr("r", function(d) {
+		  var radius = 0;
+		  function accum(n) {
+			  radius += n.size;
+		  }
+		  if (d.children) d.children.forEach(accum);
+		  if (!(Math.sqrt(d.size) / 5)) {
+			  d.size = radius;
+		  }
+		  return Math.sqrt(d.size) / 5 || 65;
+		  });
 
   nodeEnter.append("text")
       .attr("dy", ".35em")
