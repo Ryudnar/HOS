@@ -25,3 +25,8 @@ for (i in accountObj) {
     ipList.push(remote.addr);
   }
 }
+
+ipList = ipList.reduce(function(a,b){if(a.indexOf(b)<0)a.push(b);return a;},[]);
+ipList.splice(ipList.indexOf("0.0.0.0"), 1);
+ipList.splice(ipList.indexOf("127.0.0.1"), 1);
+console.log(ipList);
