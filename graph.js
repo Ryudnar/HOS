@@ -38,9 +38,6 @@ function update() {
       .links(links)
       .start();
   
-  console.log(root.x);
-  console.log(root.y);
-  
   // Update links.
   link = link.data(links, function(d) { return d.target.id; });
 
