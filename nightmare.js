@@ -44,6 +44,6 @@ function runNightmare(i) {
   );
 }
 
-for (index = 0; index < companion ; index++) {
+for (index = 0; index <= companion ; index++) {
   runNightmare(index);
 }
