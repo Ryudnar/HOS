@@ -1,32 +1,59 @@
-var HOST = '127.0.0.1';
+var localhost = '127.0.0.1';
 var PORT = 33333;
 
 var dgram = require('dgram');
 var server = dgram.createSocket('udp4');
 
 server.on('listening', function () {
-    var address = server.address();
-    console.log('UDP Server listening on ' + address.address + ":" + address.port);
+  var address = server.address();
+  console.log('UDP Server listening on ' + address.address + ":" + address.port);
 });
 
 server.on('message', function (message, remote) {
-    console.log(remote.address + ':' + remote.port +' - ' + message);
-
+  //console.log(remote.address + ':' + remote.port +' - ' + message);
+  runParser(message);
+  for (index = 0; index <= companion ; index++) {
+    runNightmare(index);
+  }
 });
 
-server.bind(PORT, HOST);
+server.bind(PORT, localhost);
 
-var accountStr = '[{"local":{"addr":"0.0.0.0","port":135},"pid":952,"pname":"svchost.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"0.0.0.0","port":445},"pid":4,"pname":"<invalid>","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"0.0.0.0","port":1536},"pid":652,"pname":"<invalid>","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"0.0.0.0","port":1537},"pid":1292,"pname":"svchost.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"0.0.0.0","port":1538},"pid":2568,"pname":"svchost.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"0.0.0.0","port":1539},"pid":2340,"pname":"svchost.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"0.0.0.0","port":1540},"pid":3128,"pname":"spoolsv.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"0.0.0.0","port":1551},"pid":728,"pname":"<invalid>","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"0.0.0.0","port":1552},"pid":748,"pname":"lsass.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"0.0.0.0","port":5357},"pid":4,"pname":"<invalid>","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"0.0.0.0","port":21300},"pid":14148,"pname":"I3GProc.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"0.0.0.0","port":27036},"pid":16048,"pname":"Steam.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":1541},"pid":3700,"pname":"AppleMobileDeviceService.exe","remote":{"addr":"127.0.0.1","port":5354},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":1542},"pid":3700,"pname":"AppleMobileDeviceService.exe","remote":{"addr":"127.0.0.1","port":5354},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":1932},"pid":3832,"pname":"nvcontainer.exe","remote":{"addr":"127.0.0.1","port":65001},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":1936},"pid":11356,"pname":"NVIDIA Web Helper.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":1947},"pid":16084,"pname":"LeapSvc64.exe","remote":{"addr":"127.0.0.1","port":5905},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":1948},"pid":16084,"pname":"LeapSvc64.exe","remote":{"addr":"127.0.0.1","port":5905},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":1949},"pid":16084,"pname":"LeapSvc64.exe","remote":{"addr":"127.0.0.1","port":5905},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":1950},"pid":16084,"pname":"LeapSvc64.exe","remote":{"addr":"127.0.0.1","port":5905},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":1951},"pid":16084,"pname":"LeapSvc64.exe","remote":{"addr":"127.0.0.1","port":5905},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":1952},"pid":16084,"pname":"LeapSvc64.exe","remote":{"addr":"127.0.0.1","port":5905},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":3867},"pid":15736,"pname":"TeamViewer_Desktop.exe","remote":{"addr":"127.0.0.1","port":5939},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":5354},"pid":3736,"pname":"mDNSResponder.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":5354},"pid":3736,"pname":"mDNSResponder.exe","remote":{"addr":"127.0.0.1","port":1541},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":5354},"pid":3736,"pname":"mDNSResponder.exe","remote":{"addr":"127.0.0.1","port":1542},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":5905},"pid":16084,"pname":"LeapSvc64.exe","remote":{"addr":"127.0.0.1","port":1947},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":5905},"pid":16084,"pname":"LeapSvc64.exe","remote":{"addr":"127.0.0.1","port":1948},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":5905},"pid":16084,"pname":"LeapSvc64.exe","remote":{"addr":"127.0.0.1","port":1949},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":5905},"pid":16084,"pname":"LeapSvc64.exe","remote":{"addr":"127.0.0.1","port":1950},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":5905},"pid":16084,"pname":"LeapSvc64.exe","remote":{"addr":"127.0.0.1","port":1951},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":5905},"pid":16084,"pname":"LeapSvc64.exe","remote":{"addr":"127.0.0.1","port":1952},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":5939},"pid":11760,"pname":"TeamViewer_Service.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":5939},"pid":11760,"pname":"TeamViewer_Service.exe","remote":{"addr":"127.0.0.1","port":3867},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":5939},"pid":11760,"pname":"TeamViewer_Service.exe","remote":{"addr":"127.0.0.1","port":9086},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":6263},"pid":4496,"pname":"AgileBits.OnePassword.Desktop.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":6436},"pid":16084,"pname":"LeapSvc64.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":6437},"pid":16084,"pname":"LeapSvc64.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":6438},"pid":16084,"pname":"LeapSvc64.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":6439},"pid":16084,"pname":"LeapSvc64.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":9086},"pid":13840,"pname":"TeamViewer.exe","remote":{"addr":"127.0.0.1","port":5939},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":9091},"pid":13840,"pname":"TeamViewer.exe","remote":{"addr":"127.0.0.1","port":9092},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":9092},"pid":13840,"pname":"TeamViewer.exe","remote":{"addr":"127.0.0.1","port":9091},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":16106},"pid":9820,"pname":"veraport-x64.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":16107},"pid":9316,"pname":"delfino.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":27015},"pid":3700,"pname":"AppleMobileDeviceService.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":27060},"pid":16048,"pname":"Steam.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":65000},"pid":3832,"pname":"nvcontainer.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":65001},"pid":3832,"pname":"nvcontainer.exe","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"127.0.0.1","port":65001},"pid":3832,"pname":"nvcontainer.exe","remote":{"addr":"127.0.0.1","port":1932},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":139},"pid":4,"pname":"<invalid>","remote":{"addr":"0.0.0.0","port":0},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":1040},"pid":16084,"pname":"LeapSvc64.exe","remote":{"addr":"174.129.199.184","port":443},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":1044},"pid":16084,"pname":"LeapSvc64.exe","remote":{"addr":"54.243.214.201","port":443},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":1142},"pid":9472,"pname":"chrome.exe","remote":{"addr":"192.30.253.124","port":443},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":1760},"pid":9472,"pname":"chrome.exe","remote":{"addr":"64.233.188.188","port":5228},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":3366},"pid":9472,"pname":"chrome.exe","remote":{"addr":"163.152.161.230","port":8000},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":3866},"pid":11760,"pname":"TeamViewer_Service.exe","remote":{"addr":"37.252.244.2","port":5938},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":3894},"pid":9472,"pname":"chrome.exe","remote":{"addr":"163.152.161.230","port":8000},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":4807},"pid":11664,"pname":"KakaoTalk.exe","remote":{"addr":"27.0.239.90","port":443},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":8109},"pid":4496,"pname":"AgileBits.OnePassword.Desktop.exe","remote":{"addr":"52.21.121.211","port":443},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":8733},"pid":8728,"pname":"putty.exe","remote":{"addr":"163.152.161.230","port":22},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":9089},"pid":11760,"pname":"TeamViewer_Service.exe","remote":{"addr":"213.39.27.213","port":5938},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":9204},"pid":9472,"pname":"chrome.exe","remote":{"addr":"23.77.22.122","port":443},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":12249},"pid":14936,"pname":"ServiceHub.SettingsHost.exe","remote":{"addr":"65.52.0.51","port":5671},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":12289},"pid":9472,"pname":"chrome.exe","remote":{"addr":"104.28.5.70","port":443},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":12294},"pid":9472,"pname":"chrome.exe","remote":{"addr":"23.219.134.131","port":443},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":12307},"pid":9472,"pname":"chrome.exe","remote":{"addr":"198.145.13.12","port":443},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":12343},"pid":0,"pname":"<invalid>","remote":{"addr":"211.231.99.76","port":80},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":12344},"pid":0,"pname":"<invalid>","remote":{"addr":"101.79.209.203","port":80},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":12345},"pid":0,"pname":"<invalid>","remote":{"addr":"211.231.99.12","port":80},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":12346},"pid":0,"pname":"<invalid>","remote":{"addr":"101.79.211.106","port":80},"type":"tcp/ipv4"},{"local":{"addr":"163.152.161.214","port":14994},"pid":16048,"pname":"Steam.exe","remote":{"addr":"45.121.186.10","port":27020},"type":"tcp/ipv4"},{"local":{"addr":"0.0.0.0","port":3702},"pid":2788,"pname":"dashost.exe","type":"udp/ipv4"},{"local":{"addr":"0.0.0.0","port":3702},"pid":2788,"pname":"dashost.exe","type":"udp/ipv4"},{"local":{"addr":"0.0.0.0","port":5050},"pid":5696,"pname":"svchost.exe","type":"udp/ipv4"},{"local":{"addr":"0.0.0.0","port":5353},"pid":2912,"pname":"svchost.exe","type":"udp/ipv4"},{"local":{"addr":"0.0.0.0","port":5353},"pid":9472,"pname":"chrome.exe","type":"udp/ipv4"},{"local":{"addr":"0.0.0.0","port":5353},"pid":9472,"pname":"chrome.exe","type":"udp/ipv4"},{"local":{"addr":"0.0.0.0","port":5355},"pid":2912,"pname":"svchost.exe","type":"udp/ipv4"},{"local":{"addr":"0.0.0.0","port":27036},"pid":16048,"pname":"Steam.exe","type":"udp/ipv4"},{"local":{"addr":"0.0.0.0","port":50478},"pid":11760,"pname":"TeamViewer_Service.exe","type":"udp/ipv4"},{"local":{"addr":"0.0.0.0","port":52787},"pid":3736,"pname":"mDNSResponder.exe","type":"udp/ipv4"},{"local":{"addr":"0.0.0.0","port":52981},"pid":3832,"pname":"nvcontainer.exe","type":"udp/ipv4"},{"local":{"addr":"0.0.0.0","port":58004},"pid":2788,"pname":"dashost.exe","type":"udp/ipv4"},{"local":{"addr":"0.0.0.0","port":58937},"pid":11760,"pname":"TeamViewer_Service.exe","type":"udp/ipv4"},{"local":{"addr":"127.0.0.1","port":1900},"pid":7844,"pname":"svchost.exe","type":"udp/ipv4"},{"local":{"addr":"127.0.0.1","port":48200},"pid":6588,"pname":"nvcontainer.exe","type":"udp/ipv4"},{"local":{"addr":"127.0.0.1","port":48202},"pid":11356,"pname":"NVIDIA Web Helper.exe","type":"udp/ipv4"},{"local":{"addr":"127.0.0.1","port":52010},"pid":6588,"pname":"nvcontainer.exe","type":"udp/ipv4"},{"local":{"addr":"127.0.0.1","port":52789},"pid":3700,"pname":"AppleMobileDeviceService.exe","type":"udp/ipv4"},{"local":{"addr":"127.0.0.1","port":52790},"pid":3700,"pname":"AppleMobileDeviceService.exe","type":"udp/ipv4"},{"local":{"addr":"127.0.0.1","port":52875},"pid":3832,"pname":"nvcontainer.exe","type":"udp/ipv4"},{"local":{"addr":"127.0.0.1","port":52878},"pid":3832,"pname":"nvcontainer.exe","type":"udp/ipv4"},{"local":{"addr":"127.0.0.1","port":52980},"pid":11356,"pname":"NVIDIA Web Helper.exe","type":"udp/ipv4"},{"local":{"addr":"127.0.0.1","port":52983},"pid":11356,"pname":"NVIDIA Web Helper.exe","type":"udp/ipv4"},{"local":{"addr":"127.0.0.1","port":52984},"pid":11356,"pname":"NVIDIA Web Helper.exe","type":"udp/ipv4"},{"local":{"addr":"127.0.0.1","port":57295},"pid":7844,"pname":"svchost.exe","type":"udp/ipv4"},{"local":{"addr":"127.0.0.1","port":65000},"pid":3832,"pname":"nvcontainer.exe","type":"udp/ipv4"},{"local":{"addr":"163.152.161.214","port":137},"pid":4,"pname":"<invalid>","type":"udp/ipv4"},{"local":{"addr":"163.152.161.214","port":138},"pid":4,"pname":"<invalid>","type":"udp/ipv4"},{"local":{"addr":"163.152.161.214","port":1900},"pid":7844,"pname":"svchost.exe","type":"udp/ipv4"},{"local":{"addr":"163.152.161.214","port":5353},"pid":3736,"pname":"mDNSResponder.exe","type":"udp/ipv4"},{"local":{"addr":"163.152.161.214","port":5353},"pid":11760,"pname":"TeamViewer_Service.exe","type":"udp/ipv4"},{"local":{"addr":"163.152.161.214","port":5353},"pid":3832,"pname":"nvcontainer.exe","type":"udp/ipv4"},{"local":{"addr":"163.152.161.214","port":57294},"pid":7844,"pname":"svchost.exe","type":"udp/ipv4"}]';
-var accountObj = JSON.parse(accountStr);
-var ipList = [];
-for (i in accountObj) {
-  var remote = accountObj[i].remote;
-  if (remote != null) {
-    ipList.push(remote.addr);
+server.send("ping", 12314 , localhost, (result) => {
+  if(result != null) {
+    server.close();
   }
-}
+});
 
-ipList = ipList.reduce(function(a,b){if(a.indexOf(b)<0)a.push(b);return a;},[]);
-ipList.splice(ipList.indexOf("0.0.0.0"), 1);
-ipList.splice(ipList.indexOf("127.0.0.1"), 1);
-console.log(ipList);
+var connList = [];
+
+function runParser(message) {
+  var accountObj = JSON.parse(message);
+  for (i in accountObj) {
+    var remote = accountObj[i].remote;
+    if (remote != null) {
+      var object = {
+          process : accountObj[i].pname,
+          ip : remote.addr,
+          port : remote.port,
+          risk : -1
+      };
+      connList.push(object);
+    }
+  }
+  
+  var obj = {};
+  
+  for ( var i=0, len=connList.length; i < len; i++ ) {
+    obj[connList[i]['ip'] + ":" + connList[i]['port']] = connList[i];
+  }
+  
+  connList = [];
+  for ( var key in obj ) {
+    if(obj[key].ip != "0.0.0.0" && obj[key].ip != "127.0.0.1") {
+      connList.push(obj[key]);
+    }
+  }
+  
+  console.log(connList);
+}

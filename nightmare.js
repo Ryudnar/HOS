@@ -1,18 +1,17 @@
-//var ipList = ['8.8.8.8', '121.129.74.234'];
 var companion = 5;
 
 function runNightmare(i) {
-  if(i >= ipList.length) return;
+  if(i >= connList.length) return;
   var Nightmare = require('nightmare');
   var nightmare = Nightmare({
     electronPath: require('./node_modules/electron'),
     waitTimeout: 60000,
-    show: false
+    show: true
   })
   
   nightmare
     .goto('http://www.ipvoid.com/ip-blacklist-check/')
-    .type('input[name=ip]', ipList[i])
+    .type('input[name=ip]', connList[i].ip)
     .click('button[type=submit]')
     .wait('a[title="Close"]')
     .click('a[title="Close"]')
@@ -31,10 +30,8 @@ function runNightmare(i) {
     })
     .end()
     .then(function (result) {
-      var attr = [];
-      attr.push(result);
-      attr.push(ipList[i]);
-      console.log(attr);
+      connList[i].risk = result;
+      console.log(connList[i]);
       runNightmare(i+companion);
     })
     .catch(function (error) {
@@ -42,8 +39,4 @@ function runNightmare(i) {
       runNightmare(i+companion);
     }
   );
-}
-
-for (index = 0; index <= companion ; index++) {
-  runNightmare(index);
 }
