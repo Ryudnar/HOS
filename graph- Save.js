@@ -1,10 +1,13 @@
 var width = 1280,
     height = 1024,
-    global;
+    global = {
+      "name": "My Computer",
+      "children": []
+    };
 
 var force = d3.layout.force()
-    .linkDistance(100)
-    .charge(-1000)
+    .linkDistance(50)
+    .charge(-50)
     .gravity(0)
     .size([width, height])
     .on("tick", tick);
@@ -15,22 +18,61 @@ var svg = d3.select("body").append("svg")
 
 var link = svg.selectAll(".link"),
     node = svg.selectAll(".node");
+    
+var connList = [];
 
-global = JSON.parse(localStorage.getItem('graph'));
-
-reload();
-/* d3.json(graph, function(error, json) {
-  if (error) throw error;
-
-  global = json;
+function updateJsonStr () {
+  global = {
+    "name": "My Computer",
+    "children": []
+  };
+  for (i in connList) {
+    if(connList[i].name == "<invalid>") continue;
+    var proc = global.children.filter(function( obj ) {
+      return obj.name == connList[i].process
+    });
+    proc = proc[0];
+    if(proc == null) {
+      proc = {
+        "name": connList[i].process,
+        "children": []
+      };
+      global.children.push(proc);
+      continue;
+    }
+    var port = proc.children.filter(function( obj ) {
+      return obj.name == connList[i].port
+    });
+    port = port[0];
+    if(port == null){
+      port = {
+        "name": connList[i].port,
+        "children": []
+      };
+      proc.children.push(port);
+      continue;
+    }
+    var ip = port.children.filter(function( obj ) {
+      return obj.name == connList[i].ip
+    });
+    ip = ip[0];
+    if(ip == null){
+      ip = {
+        "name": connList[i].ip,
+        "children": []
+      };
+      var risk = {
+        "name": parseInt(connList[i].risk),
+        "size": 1
+      };
+      ip.children.push(risk);
+      port.children.push(ip);
+    }
+  }
   update();
-}); */
-
-
-function reload() {
-    global = JSON.parse(localStorage.getItem('graph'));
-    update();
 }
+
+updateJsonStr();
 
 function update() {
   var nodes = flatten(global),
@@ -63,24 +105,24 @@ function update() {
   var nodeEnter = node.enter().append("g")
       .attr("class", "node")
       .on("click", click)
-      .call(force.drag);
+      //.call(force.drag);
 	  
   nodeEnter.append("circle")
       .attr("r", function(d) {
 		  var radius = 0;
 		  function accum(n) {
-			  radius += n.size;
+			  radius += n.size*20;
 		  }
 		  if (d.children) d.children.forEach(accum);
-		  if (!(Math.sqrt(d.size) / 5)) {
-			  d.size = radius;
-		  }
-		  return Math.sqrt(d.size) / 5 || 65;
+          if(d.size < 0) {
+            d.size = 1;
+          }
+		  return 20;
 		  });
 
   nodeEnter.append("text")
       .attr("dy", ".35em")
-      .text(function(d) { return d.process; });
+      .text(function(d) { return d.name; });
 
   node.select("circle")
       .style("fill", color);
@@ -111,8 +153,7 @@ function click(d) {
     d.children = d._children;
     d._children = null;
   }
-
-  reload();
+  update();
 }
 
 // Returns a list of all nodes under the global.

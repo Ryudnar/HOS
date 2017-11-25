@@ -55,5 +55,5 @@ function runParser(message) {
     }
   }
   
-  console.log(connList);
+  updateJsonStr();
 }
