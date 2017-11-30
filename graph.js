@@ -7,7 +7,7 @@ var width = 1280,
 
 var force = d3.layout.force()
     .linkDistance(200)
-    .charge(-20)
+    .charge(-100)
     .gravity(0)
     .size([width, height])
     .on("tick", tick);
@@ -23,7 +23,7 @@ var connList = [];
 var newNodes = [];
 var prevNodes = [];
 
-function updateJsonStr () {
+function updateJsonStr (callback) {
   global = {
     "process": "My Computer",
     "children": []
@@ -51,41 +51,14 @@ function updateJsonStr () {
       };
       proc.children.push(detail);
     }
-    /*
-    var port = proc.children.filter(function( obj ) {
-      return obj.name == connList[i].port
-    });
-    port = port[0];
-    if(port == null){
-      port = {
-        "name": connList[i].port,
-        "children": []
-      };
-      proc.children.push(port);
-      continue;
-    }
-    var ip = port.children.filter(function( obj ) {
-      return obj.name == connList[i].ip
-    });
-    ip = ip[0];
-    if(ip == null){
-      ip = {
-        "name": connList[i].ip,
-        "children": []
-      };
-      var risk = {
-        "name": parseInt(connList[i].risk),
-        "size": 1
-      };
-      ip.children.push(risk);
-      port.children.push(ip);
-    }
-    */ // 원본 보존용
   }
-  update();
+  if(typeof callback === "function") {
+      console.log("call update from updateJsonStr");
+      callback();
+  }
 }
 
-updateJsonStr();
+updateJsonStr(update);
 
 function update() {
   var nodes = flatten(global),

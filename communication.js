@@ -55,5 +55,5 @@ function runParser(message) {
     }
   }
   
-  updateJsonStr();
+  updateJsonStr(update);
 }
