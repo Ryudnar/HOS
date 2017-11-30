@@ -82,25 +82,23 @@ function update() {
     .on("click", click);
   
   nodeEnter.append("circle")
-    .attr("r", function(d){
+    .attr("r", function(d) {
       return 50;
       });
 
   nodeEnter.append("text")
-    .attr("dy", ".35em")
+    .attr("dy", ".35em");
 
   nodeEnter.filter(i => !i.fixed)
     .call(force.drag);
 
   node.select("circle")
     .style("fill", color);
+    
+  node.select("text")
+    .text(function(d) { return d.children ? d.process : d.risk; });
 
-  node.append("text")
-      .attr("dy", ".35em")
-      .text(function(d) { return d.children ? d.process : d.risk; });
-
-
-    // Restart the force layout.
+  // Restart the force layout.
   force
     .nodes(nodes)
     .links(links)
@@ -109,25 +107,24 @@ function update() {
 
 function tick() {
   link.attr("x1", function(d) { return d.source.x; })
-      .attr("y1", function(d) { return d.source.y; })
-      .attr("x2", function(d) { return d.target.x; })
-      .attr("y2", function(d) { return d.target.y; });
+    .attr("y1", function(d) { return d.source.y; })
+    .attr("x2", function(d) { return d.target.x; })
+    .attr("y2", function(d) { return d.target.y; });
 
   node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 }
 
 function color(d) {
   return d._children ? "#BBBBBB" // collapsed package
-      : d.children ? "#FFFFFF" // expanded package
-      : d.risk === -1 ? "#fd8d3c"
-      : d.risk === 0 ? "#50bcdf"
-      : "#dc143c"; // leaf node
+    : d.children ? "#FFFFFF" // expanded package
+    : d.risk === -1 ? "#fd8d3c"
+    : d.risk === 0 ? "#50bcdf"
+    : "#dc143c"; // leaf node
 }
 
 // Toggle children on click.
 function click(d) {
   if (d3.event.defaultPrevented) return; // ignore drag
-    console.log("clicked node : " + d.id + d.process + d.risk);
   if (d.children) {
     d._children = d.children;
     d.children = null;
