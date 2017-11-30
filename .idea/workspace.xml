@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4e93aff-e25a-4cf3-a6c5-fd2769507f17" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/makeJson.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/graph- Save.js" afterPath="$PROJECT_DIR$/graph- Save.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/npm-debug.log" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/graph.js" afterPath="$PROJECT_DIR$/graph.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nightmare- Save.js" afterPath="$PROJECT_DIR$/nightmare- Save.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nightmare.js" afterPath="$PROJECT_DIR$/nightmare.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,8 +20,8 @@
       <file leaf-file-name="graph.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/graph.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-266">
-              <caret line="85" column="1" lean-forward="true" selection-start-line="85" selection-start-column="1" selection-end-line="85" selection-end-column="1" />
+            <state relative-caret-position="361">
+              <caret line="19" column="34" lean-forward="true" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -158,12 +154,12 @@
       <updated>1511538472417</updated>
       <workItem from="1511538476188" duration="11567000" />
       <workItem from="1511601162400" duration="6995000" />
-      <workItem from="1511678358191" duration="8913000" />
+      <workItem from="1511678358191" duration="10809000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27475000" />
+    <option name="totallyTimeSpent" value="29371000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -195,7 +191,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -259,9 +257,9 @@
         <state relative-caret-position="-2152">
           <caret line="24" column="16" lean-forward="false" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
           <folding>
-            <marker date="1511600190704" expanded="true" signature="2520:2525" ph="{...}" />
-            <marker date="1511600190704" expanded="true" signature="2601:2807" ph="{...}" />
-            <marker date="1511600190704" expanded="true" signature="2654:2769" ph="{...}" />
+            <marker date="1512021562520" expanded="true" signature="2520:2525" ph="{...}" />
+            <marker date="1512021562520" expanded="true" signature="2601:2807" ph="{...}" />
+            <marker date="1512021562520" expanded="true" signature="2654:2769" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -308,8 +306,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/graph.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-266">
-          <caret line="85" column="1" lean-forward="true" selection-start-line="85" selection-start-column="1" selection-end-line="85" selection-end-column="1" />
+        <state relative-caret-position="361">
+          <caret line="19" column="34" lean-forward="true" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
           <folding />
         </state>
       </provider>

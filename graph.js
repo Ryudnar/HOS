@@ -6,8 +6,8 @@ var width = 1280,
     };
 
 var force = d3.layout.force()
-    .linkDistance(100)
-    .charge(-50)
+    .linkDistance(200)
+    .charge(-20)
     .gravity(0)
     .size([width, height])
     .on("tick", tick);
@@ -115,7 +115,6 @@ function update() {
   var nodeEnter = node.enter().append("g")
       .attr("class", "node")
       .on("click", click)
-      //.call(force.drag);
 	  
   nodeEnter.append("circle")
       .attr("r", function(d) {
@@ -134,7 +133,10 @@ function update() {
       .attr("dy", ".35em")
       .text(function(d) { return d.children ? d.process : d.risk; });
 
-  node.select("circle")
+  nodeEnter.filter(i => !i.fixed)
+    .call(force.drag);
+
+  nodeEnter.select("circle")
       .style("fill", color);
 
 
@@ -159,7 +161,9 @@ function tick() {
 function color(d) {
   return d._children ? "#BBBBBB" // collapsed package
       : d.children ? "#FFFFFF" // expanded package
-      : "#fd8d3c"; // leaf node
+      : d.risk === -1 ? "#fd8d3c"
+      : d.risk === 0 ? "#50bcdf"
+      : "#dc143c"; // leaf node
 }
 
 // Toggle children on click.
