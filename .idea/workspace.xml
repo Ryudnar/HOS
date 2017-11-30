@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4e93aff-e25a-4cf3-a6c5-fd2769507f17" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/communication.js" afterPath="$PROJECT_DIR$/communication.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/graph.js" afterPath="$PROJECT_DIR$/graph.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,8 +20,18 @@
       <file leaf-file-name="graph.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/graph.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1367">
-              <caret line="156" column="24" lean-forward="true" selection-start-line="156" selection-start-column="24" selection-end-line="156" selection-end-column="24" />
+            <state relative-caret-position="583">
+              <caret line="89" column="24" lean-forward="false" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="d3.min.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/d3.min.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="279">
+              <caret line="1" column="89815" lean-forward="false" selection-start-line="1" selection-start-column="89809" selection-end-line="1" selection-end-column="89815" />
               <folding />
             </state>
           </provider>
@@ -40,8 +50,8 @@
       <file leaf-file-name="nightmare.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nightmare.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="34" column="15" lean-forward="false" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="15" />
+            <state relative-caret-position="171">
+              <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -50,9 +60,19 @@
       <file leaf-file-name="communication.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/communication.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="664">
-              <caret line="52" column="64" lean-forward="true" selection-start-line="52" selection-start-column="64" selection-end-line="52" selection-end-column="64" />
-              <folding />
+            <state relative-caret-position="988">
+              <caret line="52" column="64" lean-forward="false" selection-start-line="52" selection-start-column="64" selection-end-line="52" selection-end-column="64" />
+              <folding>
+                <marker date="1512044784741" expanded="true" signature="326:499" ph="{...}" />
+                <marker date="1512044784741" expanded="true" signature="608:633" ph="{...}" />
+                <marker date="1512044784741" expanded="true" signature="687:1341" ph="{...}" />
+                <marker date="1512044784741" expanded="true" signature="753:1007" ph="{...}" />
+                <marker date="1512044784741" expanded="true" signature="818:1003" ph="{...}" />
+                <marker date="1512044784741" expanded="true" signature="839:967" ph="{&quot;ip&quot;: remote.addr...}" />
+                <marker date="1512044784741" expanded="true" signature="1083:1158" ph="{...}" />
+                <marker date="1512044784741" expanded="true" signature="1204:1311" ph="{...}" />
+                <marker date="1512044784741" expanded="true" signature="1269:1307" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -72,6 +92,8 @@
       <find>children</find>
       <find>update</find>
       <find>typeof</find>
+      <find>insert(</find>
+      <find>insert</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -81,8 +103,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/makeJson.js" />
-        <option value="$PROJECT_DIR$/nightmare.js" />
         <option value="$PROJECT_DIR$/communication.js" />
+        <option value="$PROJECT_DIR$/nightmare.js" />
         <option value="$PROJECT_DIR$/graph.js" />
       </list>
     </option>
@@ -98,7 +120,7 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="907" />
     <option name="y" value="58" />
     <option name="width" value="1400" />
@@ -120,6 +142,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -127,12 +151,15 @@
               <item name="HOS" type="b2602c69:ProjectViewProjectNode" />
               <item name="HOS" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="HOS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HOS" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -166,17 +193,18 @@
       <workItem from="1511538476188" duration="11567000" />
       <workItem from="1511601162400" duration="6995000" />
       <workItem from="1511678358191" duration="14632000" />
+      <workItem from="1512038256622" duration="6105000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33194000" />
+    <option name="totallyTimeSpent" value="39299000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18020834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -208,6 +236,48 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/graph.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nightmare.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="34" column="15" lean-forward="false" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/communication.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="988">
+          <caret line="52" column="64" lean-forward="true" selection-start-line="52" selection-start-column="64" selection-end-line="52" selection-end-column="64" />
+          <folding>
+            <marker date="1512044784741" expanded="true" signature="326:499" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="608:633" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="687:1341" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="753:1007" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="818:1003" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="839:967" ph="{&quot;ip&quot;: remote.addr...}" />
+            <marker date="1512044784741" expanded="true" signature="1083:1158" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="1204:1311" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="1269:1307" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/graph.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -251,7 +321,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="19" column="2" lean-forward="true" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
-          <folding />
+          <folding>
+            <marker date="1512044784741" expanded="true" signature="326:499" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="608:633" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="687:1341" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="753:1007" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="818:1003" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="839:967" ph="{&quot;ip&quot;: remote.addr...}" />
+            <marker date="1512044784741" expanded="true" signature="1083:1158" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="1204:1311" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="1269:1307" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -267,11 +347,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2152">
           <caret line="24" column="16" lean-forward="false" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
-          <folding>
-            <marker date="1512021562520" expanded="true" signature="2520:2525" ph="{...}" />
-            <marker date="1512021562520" expanded="true" signature="2601:2807" ph="{...}" />
-            <marker date="1512021562520" expanded="true" signature="2654:2769" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -299,26 +375,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nightmare.js">
+    <entry file="file://$PROJECT_DIR$/communication.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="34" column="15" lean-forward="false" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="15" />
+        <state relative-caret-position="988">
+          <caret line="52" column="64" lean-forward="false" selection-start-line="52" selection-start-column="64" selection-end-line="52" selection-end-column="64" />
+          <folding>
+            <marker date="1512044784741" expanded="true" signature="326:499" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="608:633" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="687:1341" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="753:1007" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="818:1003" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="839:967" ph="{&quot;ip&quot;: remote.addr...}" />
+            <marker date="1512044784741" expanded="true" signature="1083:1158" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="1204:1311" ph="{...}" />
+            <marker date="1512044784741" expanded="true" signature="1269:1307" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/d3.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="1" column="89815" lean-forward="false" selection-start-line="1" selection-start-column="89809" selection-end-line="1" selection-end-column="89815" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/communication.js">
+    <entry file="file://$PROJECT_DIR$/nightmare.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="664">
-          <caret line="52" column="64" lean-forward="true" selection-start-line="52" selection-start-column="64" selection-end-line="52" selection-end-column="64" />
+        <state relative-caret-position="171">
+          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/graph.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1367">
-          <caret line="156" column="24" lean-forward="true" selection-start-line="156" selection-start-column="24" selection-end-line="156" selection-end-column="24" />
+        <state relative-caret-position="583">
+          <caret line="89" column="24" lean-forward="false" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
           <folding />
         </state>
       </provider>

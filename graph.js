@@ -3,7 +3,9 @@ var width = 1280,
     global;
 
 var force = d3.layout.force()
-    .linkDistance(200)
+    .linkDistance(function(link) {
+      return typeof link.target.risk == "number" ? 120 * (0.8 + Math.random() * 0.4) : 200;
+    })
     .charge(-100)
     .gravity(0)
     .size([width, height])
@@ -80,31 +82,25 @@ function update() {
     .on("click", click);
   
   nodeEnter.append("circle")
-    .attr("r", function(d) {
-      /*
-      var radius = 0;
-      function accum(n) {
-    	  radius += n.size*20;
-      }
-      if (d.children) d.children.forEach(accum);
-      if(d.size < 0) {
-        d.size = 1;
-      }
-      */
-      return 40;
+    .attr("r", function(d){
+      return 50;
       });
 
   nodeEnter.append("text")
     .attr("dy", ".35em")
-    .text(function(d) { return d.children ? d.process : d.risk; });
 
   nodeEnter.filter(i => !i.fixed)
     .call(force.drag);
 
-  nodeEnter.select("circle")
+  node.select("circle")
     .style("fill", color);
 
-  // Restart the force layout.
+  node.append("text")
+      .attr("dy", ".35em")
+      .text(function(d) { return d.children ? d.process : d.risk; });
+
+
+    // Restart the force layout.
   force
     .nodes(nodes)
     .links(links)
@@ -131,6 +127,7 @@ function color(d) {
 // Toggle children on click.
 function click(d) {
   if (d3.event.defaultPrevented) return; // ignore drag
+    console.log("clicked node : " + d.id + d.process + d.risk);
   if (d.children) {
     d._children = d.children;
     d.children = null;
