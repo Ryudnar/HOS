@@ -1,9 +1,6 @@
 var width = 1280,
     height = 1024,
-    global = {
-      "name": "My Computer",
-      "children": []
-    };
+    global;
 
 var force = d3.layout.force()
     .linkDistance(200)
@@ -20,8 +17,6 @@ var link = svg.selectAll(".link"),
     node = svg.selectAll(".node");
     
 var connList = [];
-var newNodes = [];
-var prevNodes = [];
 
 function updateJsonStr (callback) {
   global = {
@@ -53,12 +48,10 @@ function updateJsonStr (callback) {
     }
   }
   if(typeof callback === "function") {
-      console.log("call update from updateJsonStr");
-      callback();
+    console.log("call update from updateJsonStr");
+    callback();
   }
 }
-
-updateJsonStr(update);
 
 function update() {
   var nodes = flatten(global),
@@ -68,9 +61,6 @@ function update() {
   root.x = width/2;
   root.y = height/2;
   root.fixed = true;
-
-  newNodes = nodes.filter(newNode => prevNodes.findIndex(obj => (obj.process == newNode.process && obj.port == newNode.port && obj.ip == newNode.ip && newNode.risk != -1) == -1));
-
   
   // Update links.
   link = link.data(links, function(d) { return d.target.id; });
@@ -86,40 +76,39 @@ function update() {
   node.exit().remove();
 
   var nodeEnter = node.enter().append("g")
-      .attr("class", "node")
-      .on("click", click)
-	  
+    .attr("class", "node")
+    .on("click", click);
+  
   nodeEnter.append("circle")
-      .attr("r", function(d) {
-		  var radius = 0;
-		  function accum(n) {
-			  radius += n.size*20;
-		  }
-		  if (d.children) d.children.forEach(accum);
-          if(d.size < 0) {
-            d.size = 1;
-          }
-		  return 40;
-		  });
+    .attr("r", function(d) {
+      /*
+      var radius = 0;
+      function accum(n) {
+    	  radius += n.size*20;
+      }
+      if (d.children) d.children.forEach(accum);
+      if(d.size < 0) {
+        d.size = 1;
+      }
+      */
+      return 40;
+      });
 
   nodeEnter.append("text")
-      .attr("dy", ".35em")
-      .text(function(d) { return d.children ? d.process : d.risk; });
+    .attr("dy", ".35em")
+    .text(function(d) { return d.children ? d.process : d.risk; });
 
   nodeEnter.filter(i => !i.fixed)
     .call(force.drag);
 
   nodeEnter.select("circle")
-      .style("fill", color);
+    .style("fill", color);
 
-
-    // Restart the force layout.
-    force
-        .nodes(nodes)
-        .links(links)
-        .start();
-
-    prevNodes = nodes;
+  // Restart the force layout.
+  force
+    .nodes(nodes)
+    .links(links)
+    .start();
 }
 
 function tick() {

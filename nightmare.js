@@ -2,12 +2,17 @@ var companion = 5;
 
 function runNightmare(i) {
   if(i >= connList.length) return;
+  if(connList[i].process == "<invalid>") {
+    runNightmare(i+companion);
+    return;
+  }
+  
   var Nightmare = require('nightmare');
   var nightmare = Nightmare({
     electronPath: require('./node_modules/electron'),
     waitTimeout: 60000,
     show: false
-  })
+  });
   
   nightmare
     .goto('http://www.ipvoid.com/ip-blacklist-check/')
@@ -31,12 +36,13 @@ function runNightmare(i) {
     .end()
     .then(function (result) {
       connList[i].risk = result;
-      updateJsonStr();
+      console.log(result);
+      updateJsonStr(update);
       runNightmare(i+companion);
     })
     .catch(function (error) {
       console.error('Search failed:', error);
-      runNightmare(i+companion);
+      runNightmare(i);
     }
   );
 }
