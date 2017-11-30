@@ -1,4 +1,6 @@
 var companion = 5;
+var groups = {'process':'main', 'children' : []};
+localStorage.setItem('graph', JSON.stringify(groups));
 
 function runNightmare(i) {
   if(i >= connList.length) return;
@@ -31,7 +33,43 @@ function runNightmare(i) {
     .end()
     .then(function (result) {
       connList[i].risk = result;
-      updateJsonStr();
+      console.log(connList[i]);
+
+      groups = {'process':'main', 'children' : []};
+      connList.forEach(function(item){
+          var list = groups['children'];
+          var found = false;
+          for(obj in list) {
+            if(list[obj].process === item.process) {
+              found = true;
+              break;
+            }
+          }
+          if(found){
+              if(item.risk != -1) {
+                  for(obj in list) {
+                      if(list[obj].process === item.process) {
+                          groups['children'][obj]['children'].push(item);
+                      }
+                  }
+              }
+          } else{
+              if(item.risk != -1) {
+                  var temp = {};
+                  temp['process'] = item.process;
+                  temp['children'] = [];
+                  groups['children'].push(temp);
+                  for(obj in list) {
+                      if(list[obj].process === item.process) {
+                          groups['children'][obj]['children'].push(item);
+                      }
+                  }
+              }
+          }
+
+          localStorage.setItem('graph', JSON.stringify(groups));
+      });
+
       runNightmare(i+companion);
     })
     .catch(function (error) {

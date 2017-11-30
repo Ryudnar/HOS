@@ -1,10 +1,13 @@
 var width = 1280,
     height = 1024,
-    global;
+    global = {
+      "name": "My Computer",
+      "children": []
+    };
 
 var force = d3.layout.force()
     .linkDistance(100)
-    .charge(-1000)
+    .charge(-50)
     .gravity(0)
     .size([width, height])
     .on("tick", tick);
@@ -15,22 +18,74 @@ var svg = d3.select("body").append("svg")
 
 var link = svg.selectAll(".link"),
     node = svg.selectAll(".node");
+    
+var connList = [];
+var newNodes = [];
+var prevNodes = [];
 
-global = JSON.parse(localStorage.getItem('graph'));
-
-reload();
-/* d3.json(graph, function(error, json) {
-  if (error) throw error;
-
-  global = json;
+function updateJsonStr () {
+  global = {
+    "process": "My Computer",
+    "children": []
+  };
+  for (i in connList) {
+    if(connList[i].process == "<invalid>") continue;
+    var proc = global.children.filter(function( obj ) {
+      return obj.process == connList[i].process
+    });
+    proc = proc[0];
+    if(proc == null) {
+      proc = {
+        "process": connList[i].process,
+        "children": []
+      };
+      global.children.push(proc);
+      continue;
+    }
+    else {
+      detail = {
+        "process" : connList[i].process,
+        "port" : connList[i].port,
+        "ip" : connList[i].ip,
+        "risk" : connList[i].risk
+      };
+      proc.children.push(detail);
+    }
+    /*
+    var port = proc.children.filter(function( obj ) {
+      return obj.name == connList[i].port
+    });
+    port = port[0];
+    if(port == null){
+      port = {
+        "name": connList[i].port,
+        "children": []
+      };
+      proc.children.push(port);
+      continue;
+    }
+    var ip = port.children.filter(function( obj ) {
+      return obj.name == connList[i].ip
+    });
+    ip = ip[0];
+    if(ip == null){
+      ip = {
+        "name": connList[i].ip,
+        "children": []
+      };
+      var risk = {
+        "name": parseInt(connList[i].risk),
+        "size": 1
+      };
+      ip.children.push(risk);
+      port.children.push(ip);
+    }
+    */ // 원본 보존용
+  }
   update();
-}); */
-
-
-function reload() {
-    global = JSON.parse(localStorage.getItem('graph'));
-    update();
 }
+
+updateJsonStr();
 
 function update() {
   var nodes = flatten(global),
@@ -40,12 +95,9 @@ function update() {
   root.x = width/2;
   root.y = height/2;
   root.fixed = true;
-  
-  // Restart the force layout.
-  force
-      .nodes(nodes)
-      .links(links)
-      .start();
+
+  newNodes = nodes.filter(newNode => prevNodes.findIndex(obj => (obj.process == newNode.process && obj.port == newNode.port && obj.ip == newNode.ip && newNode.risk != -1) == -1));
+
   
   // Update links.
   link = link.data(links, function(d) { return d.target.id; });
@@ -63,27 +115,36 @@ function update() {
   var nodeEnter = node.enter().append("g")
       .attr("class", "node")
       .on("click", click)
-      .call(force.drag);
+      //.call(force.drag);
 	  
   nodeEnter.append("circle")
       .attr("r", function(d) {
 		  var radius = 0;
 		  function accum(n) {
-			  radius += n.size;
+			  radius += n.size*20;
 		  }
 		  if (d.children) d.children.forEach(accum);
-		  if (!(Math.sqrt(d.size) / 5)) {
-			  d.size = radius;
-		  }
-		  return Math.sqrt(d.size) / 5 || 65;
+          if(d.size < 0) {
+            d.size = 1;
+          }
+		  return 40;
 		  });
 
   nodeEnter.append("text")
       .attr("dy", ".35em")
-      .text(function(d) { return d.process; });
+      .text(function(d) { return d.children ? d.process : d.risk; });
 
   node.select("circle")
       .style("fill", color);
+
+
+    // Restart the force layout.
+    force
+        .nodes(nodes)
+        .links(links)
+        .start();
+
+    prevNodes = nodes;
 }
 
 function tick() {
@@ -111,8 +172,7 @@ function click(d) {
     d.children = d._children;
     d._children = null;
   }
-
-  reload();
+  update();
 }
 
 // Returns a list of all nodes under the global.
