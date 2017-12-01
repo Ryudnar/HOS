@@ -1,5 +1,6 @@
 var width = 1280,
     height = 1024,
+    radius = 50,
     global = {
       "process": "My Computer",
       "children": []
@@ -88,11 +89,18 @@ function update() {
   
   nodeEnter.append("circle")
     .attr("r", function(d) {
-      return 50;
+      return radius;
       });
 
-  nodeEnter.append("text")
-    .attr("dy", ".35em");
+  nodeEnter.append("foreignObject")
+    .attr("style", "line-height: " + radius*2 + "px")
+    .attr("width", radius*2 + "px")
+    .attr("height", radius*2 + "px")
+    .attr("x", -radius + "px")
+    .attr("y", -radius + "px")
+    .append("xhtml:div")
+    .attr("class", function(d) { return "fo-text";})
+    .attr("y", ".35em");
 
   nodeEnter.filter(i => !i.fixed)
     .call(force.drag);
@@ -100,8 +108,8 @@ function update() {
   node.select("circle")
     .style("fill", color);
     
-  node.select("text")
-    .text(function(d) { 
+  node.select(".fo-text")
+    .html(function(d) { 
       if(d.children || d._children) {
         return d.process;
       }
@@ -110,9 +118,16 @@ function update() {
           d.content = d.risk;
           d.contentIsString = false;
         }
+        else if(d.content != d.risk) {
+          if(!d.contentIsString) {
+            d.content = d.risk;
+            d.contentIsString = false;
+          }
+        }
         return d.content;
       }
     });
+    //.call(wrap, 50);
 
   // Restart the force layout.
   force
@@ -120,7 +135,33 @@ function update() {
     .links(links)
     .start();
 }
-
+/*
+function wrap(text, width) {
+  text.each(function() {
+    var text = d3.select(this),
+        words = text.text().split(/\s+/).reverse(),
+        word,
+        line = [],
+        lineNumber = 0,
+        lineHeight = 0.7, // ems
+        y = text.attr("y"),
+        dy = parseFloat(text.attr("dy")),
+        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+    while (word = words.pop()) {
+      line.push(word);
+      tspan.text(line.join(" "));
+      console.log("length: " + tspan.node().getComputedTextLength());
+      console.log("width : " + width);
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop();
+        tspan.text(line.join(" "));
+        line = [word];
+        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+      }
+    }
+  });
+}
+*/
 function tick() {
   link.attr("x1", function(d) { return d.source.x; })
     .attr("y1", function(d) { return d.source.y; })

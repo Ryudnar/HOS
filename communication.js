@@ -12,8 +12,8 @@ server.on('listening', function () {
 server.on('message', function (message, remote) {
   //console.log(remote.address + ':' + remote.port +' - ' + message);
   runParser(message);
-  for (index = 0; index < companion ; index++) {
-    runNightmare(index);
+  for (i = 0; i < companion ; i++) {
+    runNightmare(i);
   }
 });
 

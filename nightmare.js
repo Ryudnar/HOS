@@ -43,6 +43,5 @@ function runNightmare(i) {
     .catch(function (error) {
       console.error('Search failed:', error);
       runNightmare(i);
-    }
-  );
+    });
 }

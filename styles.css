@@ -14,7 +14,13 @@ body {
 }
 
 div {
-  color: white
+  font: 10px sans-serif;
+  pointer-events: none;
+  text-anchor: middle;
+  word-break: break-all;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
 }
 
 .node circle {
@@ -27,6 +33,7 @@ div {
   font: 10px sans-serif;
   pointer-events: none;
   text-anchor: middle;
+  word-break: break-all;
 }
 
 line.link {
