@@ -101,7 +101,7 @@ function update() {
     .style("fill", color);
     
   node.select("text")
-    .text(function(d) { return d.children ? d.process : d.risk; });
+    .text(function(d) { return d.children || d._children ? d.process : d.risk; });
 
   // Restart the force layout.
   force
