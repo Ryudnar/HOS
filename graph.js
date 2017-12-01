@@ -101,7 +101,18 @@ function update() {
     .style("fill", color);
     
   node.select("text")
-    .text(function(d) { return d.children || d._children ? d.process : d.risk; });
+    .text(function(d) { 
+      if(d.children || d._children) {
+        return d.process;
+      }
+      else {
+        if(typeof(d.content) == "undefined") {
+          d.content = d.risk;
+          d.contentIsString = false;
+        }
+        return d.content;
+      }
+    });
 
   // Restart the force layout.
   force
@@ -136,6 +147,16 @@ function click(d) {
   } else {
     d.children = d._children;
     d._children = null;
+  }
+  if(typeof(d.risk) != "undefined") {
+    if(d.contentIsString) {
+      d.content = d.risk;
+      d.contentIsString = false;
+    }
+    else {
+      d.content = d.ip + ":" + d.port;
+      d.contentIsString = true;
+    }
   }
   update();
 }
