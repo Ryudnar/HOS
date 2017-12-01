@@ -36,7 +36,7 @@ function runNightmare(i) {
     .end()
     .then(function (result) {
       connList[i].risk = result;
-      console.log(result);
+      //console.log(result);
       updateJsonStr(update);
       runNightmare(i+companion);
     })

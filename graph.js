@@ -1,6 +1,9 @@
 var width = 1280,
     height = 1024,
-    global;
+    global = {
+      "process": "My Computer",
+      "children": []
+    };;
 
 var force = d3.layout.force()
     .linkDistance(function(link) {
@@ -21,10 +24,6 @@ var link = svg.selectAll(".link"),
 var connList = [];
 
 function updateJsonStr (callback) {
-  global = {
-    "process": "My Computer",
-    "children": []
-  };
   for (i in connList) {
     if(connList[i].process == "<invalid>") continue;
     var proc = global.children.filter(function( obj ) {
@@ -37,9 +36,12 @@ function updateJsonStr (callback) {
         "children": []
       };
       global.children.push(proc);
-      continue;
     }
-    else {
+    var detail = proc.children.filter(function( obj ) {
+      return obj.ip == connList[i].ip && obj.port == connList[i].port
+    });
+    detail = detail[0];
+    if(detail == null) {
       detail = {
         "process" : connList[i].process,
         "port" : connList[i].port,
@@ -48,9 +50,12 @@ function updateJsonStr (callback) {
       };
       proc.children.push(detail);
     }
+    else {
+      detail.risk = connList[i].risk;
+    }
   }
   if(typeof callback === "function") {
-    console.log("call update from updateJsonStr");
+    //console.log("call update from updateJsonStr");
     callback();
   }
 }
